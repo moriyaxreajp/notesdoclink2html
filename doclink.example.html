@@ -1,0 +1,107 @@
+<html>
+<head>
+<title>notes doclink to HTML converter</title>
+<link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+<style type="text/css">
+body {
+    padding-top: 60px;
+}
+</style>
+<script type="text/javascript"> 
+<!-- 
+function check(){
+
+	var dominoServer;
+	var DBRepID;
+	var ViewID;
+	var DocID;	
+	var outHTML;
+	var docTitle;
+	var domainName;
+
+	domainName = ".example.com";
+
+	outHTML="";
+
+	// <HINT>CN=SERVER1/O=ORGANIZATION1</HINT>
+	document.form1.linkSource.value.match(/<HINT>CN=([^\/]+)/);
+	dominoServer = RegExp.$1;
+
+	// <REPLICA 49000000:00000000>
+	document.form1.linkSource.value.match(/<REPLICA ([0-9A-Z]+):([0-9A-Z]+)>/);
+	DBRepID = RegExp.$1 + RegExp.$2;
+
+	// <VIEW OF12345678:90ABCDEF-ON49123456:007890AB>
+	document.form1.linkSource.value.match(/<VIEW OF([0-9A-Z]+):([0-9A-Z]+)-ON([0-9A-Z]+):([0-9A-Z]+)>/);
+	ViewID = RegExp.$1 + RegExp.$2 + RegExp.$3 + RegExp.$4;
+
+	// <NOTE OF12345678:90ABCDEF-ON49123456:007890AB>
+	document.form1.linkSource.value.match(/<NOTE OF([0-9A-Z]+):([0-9A-Z]+)-ON([0-9A-Z]+):([0-9A-Z]+)>/);
+	DocID = RegExp.$1 + RegExp.$2 + RegExp.$3 + RegExp.$4;
+
+	// <REM>Database 'DB Title 1', View 'All Documents', Document 'Document Title 1'</REM>
+	document.form1.linkSource.value.match(/<REM>Database '([^']+)', View '([^']+)', Document '([^']+)'/);
+	dbTitle = RegExp.$1;
+	viewTitle = RegExp.$2;
+	docTitle = RegExp.$3;
+
+	makeURL  = 'http://' + dominoServer.toLowerCase() + domainName + '/' + DBRepID + '/' + ViewID + '/' + DocID ;
+	makeHREF = '<a href="' + makeURL + '" title="' + dbTitle + ' - ' + docTitle +  '">' + docTitle + '</a>';
+
+	outHTML = outHTML + '<h3>URL</h3>';
+	outHTML = outHTML + '<pre>' + makeURL + '</pre>';
+	outHTML = outHTML + '<h3>HTML</h3>';
+	outHTML = outHTML + '<p>' + makeHREF + '</p>';
+	outHTML = outHTML + '<textarea cols="96" rows="8" class="span12">' + makeHREF + '</textarea>';
+
+	document.getElementById('id1').innerHTML = outHTML;
+
+}
+
+function sample(){
+	var sampleHTML;
+	sampleHTML = "";
+	sampleHTML = sampleHTML + "<REPLICA 49000000:00000000>" + "\n";
+	sampleHTML = sampleHTML + "<VIEW OF12345678:90ABCDEF-ON49123456:007890AB>" + "\n";
+	sampleHTML = sampleHTML + "<NOTE OF12345678:90ABCDEF-ON49123456:007890AB>" + "\n";
+	sampleHTML = sampleHTML + "<HINT>CN=SERVER1/O=ORGANIZATION1</HINT>" + "\n";
+	sampleHTML = sampleHTML + "<REM>Database 'DB Title 1', View 'All Documents', Document 'Document Title 1'</REM>" + "\n";
+
+	var objTextarea = document.getElementsByName('linkSource')[0]; 
+	objTextarea.value = sampleHTML; 
+
+}
+
+
+// -->
+</script>
+
+</head>
+<body>
+
+	<div class="topbar">
+		<div class="topbar-inner">
+			<div class="container-fluid">
+				<span class="brand">notes doclink to HTML converter</span>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<h2>notes doclink</h2>
+
+		<form name="form1">
+			<textarea name="linkSource" cols="96" rows="8" class="span12"></textarea>
+		</form>
+
+		<button onclick="check();" class="btn primary">convert</button>
+		<button onclick="sample();" class="btn secondary">sample</button>
+
+		<hr>
+
+		<div id="id1"></div>
+	</div>
+
+</body>
+</html>
+
